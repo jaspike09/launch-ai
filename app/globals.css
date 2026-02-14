@@ -2,8 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-  background-color: #020617;
-  color: #f8fafc;
-  margin: 0;
+:root {
+  color-scheme: dark;
 }
