@@ -1,8 +1,12 @@
-import './globals.css';
+import type { Metadata } from "next";
+import { Inter } from "next/font/google";
+import "./globals.css";
 
-export const metadata = {
-  title: 'LaunchAI Sovereign',
-  description: 'The War Room for 30-Day Revenue',
+const inter = Inter({ subsets: ["latin"] });
+
+export const metadata: Metadata = {
+  title: "Dark Mode App",
+  description: "Next.js + Tailwind Dark Theme",
 };
 
 export default function RootLayout({
@@ -12,7 +16,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body style={{ margin: 0 }}>{children}</body>
+      <body className={`${inter.className} bg-[#020617] text-slate-50 antialiased`}>
+        {children}
+      </body>
     </html>
   );
 }
