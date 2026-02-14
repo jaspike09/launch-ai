@@ -1,39 +1,15 @@
-'use client';
-import { useState, useEffect } from 'react';
-
-export default function WarRoomDashboard() {
-  const [mounted, setMounted] = useState(false);
-  const [showOverlay, setShowOverlay] = useState(true);
-  const [input, setInput] = useState('');
-  const [loading, setLoading] = useState(false);
-  const [data, setData] = useState<any>(null);
-
-  // Prevent Hydration Errors
-  useEffect(() => { setMounted(true); }, []);
-
-  const runMeeting = async () => {
-    if (!input) return;
-    setLoading(true);
-    try {
-      const res = await fetch('/api/chat', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ prompt: input }),
-      });
-      const result = await res.json();
-      setData(result);
-    } catch (e) {
-      console.error("Board connection failed", e);
-    }
-    setLoading(false);
-  };
-
-  if (!mounted) return <div className="min-h-screen bg-slate-950" />;
-
+export default function Home() {
   return (
-    <div className="h-screen flex flex-col bg-[#020617] text-slate-50 overflow-hidden font-sans">
-      
-      {/* 1. THE MENTOR INTERVENTION (The "Shock" Factor) */}
+    <main className="flex min-h-screen flex-col items-center justify-center p-24">
+      <h1 className="text-5xl font-bold tracking-tight">
+        Hello World
+      </h1>
+      <p className="mt-4 text-slate-400">
+        Your Next.js app is officially live and error-free.
+      </p>
+    </main>
+  );
+}
       {showOverlay && (
         <div className="fixed inset-0 bg-black/98 backdrop-blur-3xl z-50 flex items-center justify-center p-6 text-center">
           <div className="max-w-2xl bg-slate-900/50 border border-sky-500/30 p-12 rounded-[2.5rem] shadow-[0_0_100px_rgba(56,189,248,0.15)] animate-in fade-in zoom-in duration-500">
