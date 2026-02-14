@@ -2,7 +2,7 @@ import './globals.css';
 
 export const metadata = {
   title: 'LaunchAI Sovereign',
-  description: 'Sovereign War Room for 30-Day Revenue',
+  description: 'The War Room for 30-Day Revenue',
 };
 
 export default function RootLayout({
@@ -12,7 +12,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body style={{ margin: 0 }}>{children}</body>
     </html>
   );
 }
