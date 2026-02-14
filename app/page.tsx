@@ -1,39 +1,33 @@
-export default function Home() {
+'use client';
+import { useState } from 'react';
+
+export default function Dashboard() {
+  const [input, setInput] = useState('');
+  const [data, setData] = useState(null);
+
+  const runArchitect = async () => {
+    const res = await fetch('/api/chat', {
+      method: 'POST',
+      body: JSON.stringify({ prompt: input })
+    });
+    const json = await res.json();
+    setData(json);
+  };
+
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center p-24">
-      <h1 className="text-5xl font-bold tracking-tight">
-        Hello World
-      </h1>
-      <p className="mt-4 text-slate-400">
-        Your Next.js app is officially live and error-free.
-      </p>
+    <main className="p-10">
+      <h1 className="text-4xl font-black italic text-sky-400">LAUNCH AI</h1>
+      <input 
+        className="bg-slate-900 border border-slate-700 p-4 w-full mt-10 rounded-xl"
+        value={input} 
+        onChange={(e) => setInput(e.target.value)} 
+        placeholder="Describe the mission..." 
+      />
+      <button onClick={runArchitect} className="bg-sky-500 p-4 mt-4 rounded-xl font-bold">EXECUTE</button>
+      {data && <pre className="mt-10 bg-slate-900 p-5 rounded-xl">{JSON.stringify(data, null, 2)}</pre>}
     </main>
   );
 }
-      {showOverlay && (
-        <div className="fixed inset-0 bg-black/98 backdrop-blur-3xl z-50 flex items-center justify-center p-6 text-center">
-          <div className="max-w-2xl bg-slate-900/50 border border-sky-500/30 p-12 rounded-[2.5rem] shadow-[0_0_100px_rgba(56,189,248,0.15)] animate-in fade-in zoom-in duration-500">
-            <div className="w-24 h-24 bg-sky-500/10 rounded-full flex items-center justify-center border border-sky-500/40 mx-auto mb-8">
-              <span className="text-5xl">🧠</span>
-            </div>
-            <h2 className="text-4xl font-black italic tracking-tighter mb-4">I'M STEPPING IN.</h2>
-            <p className="text-sky-400 font-bold uppercase tracking-[0.3em] text-[10px] mb-8">Sovereign Protocol: Active</p>
-            <p className="text-slate-300 text-xl leading-relaxed mb-10">
-              Founder, your current idea has been flagged for <span className="text-red-400 font-bold underline decoration-red-400/30">Low Margin Potential</span>. 
-              We are moving from "Selling Items" to <span className="text-sky-400 font-bold italic text-2xl">Selling Results.</span>
-            </p>
-            <button 
-              onClick={() => setShowOverlay(false)}
-              className="w-full bg-sky-500 hover:bg-sky-400 text-slate-950 font-black py-6 rounded-2xl transition-all shadow-[0_20px_40px_rgba(56,189,248,0.3)] active:scale-95 text-sm uppercase tracking-widest"
-            >
-              Activate Master Architect
-            </button>
-          </div>
-        </div>
-      )}
-
-      {/* 2. HEADER */}
-      <header className="p-5 border-b border-slate-800 flex justify-between items-center bg-slate-950/50 backdrop-blur-md">
         <div className="flex items-center gap-4">
           <div className="text-2xl font-black tracking-tighter text-sky-400 italic">LAUNCH<span className="text-white">AI</span></div>
           <div className="h-4 w-px bg-slate-800" />
