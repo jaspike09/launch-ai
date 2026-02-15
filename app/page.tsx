@@ -1,5 +1,7 @@
 'use client';
-import { useState } from 'react';
+export const dynamic = 'force-dynamic'; 
+
+import React, { useState, useEffect } from 'react';
 
 export default function Dashboard() {
   const [input, setInput] = useState('');
